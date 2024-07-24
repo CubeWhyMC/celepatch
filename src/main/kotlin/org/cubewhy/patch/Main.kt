@@ -47,7 +47,10 @@ internal fun main(args: Array<String>) {
             } else {
                 entrypoint.patchFile(entry.name, inJar.getInputStream(entry).readAllBytes())
             }
-            fileMap[entry.name] = out
+            // if out equals null, drop the file.
+            if (out != null) {
+                fileMap[entry.name] = out
+            }
         }
     }
     outFile.createNewFile()
