@@ -57,7 +57,7 @@ internal fun main(args: Array<String>) {
             val className = clazz.getName()
             val classAsPath = className.replace('.', '/') + ".class"
             clazz.getClassLoader().getResourceAsStream(classAsPath)?.let {
-                fileMap[className] = it.readAllBytes()
+                fileMap[classAsPath] = it.readAllBytes()
             }
         }
     }
