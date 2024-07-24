@@ -1,3 +1,8 @@
 {
-  "entrypoint": "Point to an impl of PatchEntry"
+  "entrypoint": "Point to an impl of PatchEntry",
+  "classpath": [
+    "a.b.c",
+    "d.e.f",
+    "Class paths add in patched jar"
+  ]
 }
