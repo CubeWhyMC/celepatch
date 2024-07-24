@@ -12,7 +12,8 @@ repositories {
 }
 
 dependencies {
-//    implementation("org.ow2.asm:asm:9.4")
+    implementation("org.ow2.asm:asm:9.4")
+    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
 }
 

@@ -3,7 +3,9 @@ package org.cubewhy.patch
 import kotlinx.serialization.json.Json
 import org.cubewhy.patch.api.PatchEntry
 import org.cubewhy.patch.config.PatchConfig
+import org.cubewhy.patch.utils.ClassUtils
 import java.io.File
+import java.io.InputStream
 import java.util.jar.JarFile
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
@@ -48,6 +50,16 @@ internal fun main(args: Array<String>) {
 
     outFile.createNewFile()
     val zipOut = ZipOutputStream(outFile.outputStream())
+    config.classpath.forEach { cp ->
+        for (clazz in ClassUtils.resolvePackage(cp, Any::class.java)) {
+            val className = clazz.getName()
+            val classAsPath = className.replace('.', '/') + ".class"
+            clazz.getClassLoader().getResourceAsStream(classAsPath)?.let {
+                fileMap[className] = it.readAllBytes()
+            }
+        }
+    }
+
     for ((filePath, content) in fileMap.entries) {
         val zipEntry = ZipEntry(filePath)
         zipOut.putNextEntry(zipEntry)
