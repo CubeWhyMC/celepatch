@@ -76,7 +76,7 @@ object ClassUtils {
                 throw UnsatisfiedLinkError(klass1 + "\n\tat ${klass1}(Native Method)") // we don't want native methods
             }
             // check if class is assignable from target class
-            if (klass.isAssignableFrom(resolved) && !resolved.isInterface && !Modifier.isAbstract(resolved.modifiers)) {
+            if (klass.isAssignableFrom(resolved)) {
                 // add to list
                 list.add(resolved as Class<out T>)
             }
