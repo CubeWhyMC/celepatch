@@ -47,6 +47,8 @@ internal fun main(args: Array<String>) {
             fileMap[entry.name] = out
         }
     }
+    println("Patched successfully")
+    println("Out: $outFile")
 
     outFile.createNewFile()
     val zipOut = ZipOutputStream(outFile.outputStream())
@@ -67,4 +69,5 @@ internal fun main(args: Array<String>) {
         zipOut.closeEntry()
     }
     zipOut.close()
+    println("File saved.")
 }
